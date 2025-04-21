@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}購物車{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">購物車</h1>
+{% if cart_items %}
+<div class="bg-white p-4 rounded-lg shadow-md">
+    {% for item in cart_items %}
+    <div class="cart-item">
+        <span>{{ item.menu_item.name }} x {{ item.quantity }}</span>
+        <span>NT${{ item.subtotal }}</span>
+    </div>
+    {% endfor %}
+    <div class="mt-4">
+        <strong>總計：NT${{ total }}</strong>
+    </div>
+    <form method="POST" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn mt-4">結帳</button>
+    </form>
+</div>
+{% else %}
+<p class="text-gray-600">購物車目前是空的。</p>
+{% endif %}
