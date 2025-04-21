@@ -1,0 +1,4 @@
+django==4.2.7 
+mysqlclient==2.2.0 
+gunicorn==21.2.0 
+pillow==10.0.1
